@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Contact — Savan Ghadiya</title>
+<link rel="icon" href="assets/img/favicon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/style.css">
+<style>
+  .page-hero { padding: 160px 0 20px; }
+  .page-hero h1 { font-size: clamp(2.6rem, 7vw, 4.6rem); }
+
+  .contact-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 60px;
+  }
+
+  @media (max-width: 860px) {
+    .contact-grid { grid-template-columns: 1fr; }
+  }
+
+  .info-list {
+    list-style: none;
+    padding: 0;
+    margin: 32px 0 0;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+
+  .info-list li {
+    display: flex;
+    gap: 16px;
+    align-items: flex-start;
+    padding-bottom: 20px;
+    border-bottom: 1px solid var(--line);
+  }
+
+  .info-icon { font-size: 1.3rem; flex-shrink: 0; }
+  .info-title { font-weight: 600; color: var(--ink); }
+  .info-sub { font-size: 0.9rem; color: var(--ink-dim); margin-top: 2px; }
+
+  .field { margin-bottom: 22px; }
+
+  .field label {
+    display: block;
+    font-size: 0.85rem;
+    margin-bottom: 8px;
+    color: var(--ink-dim);
+  }
+
+  .field input,
+  .field select,
+  .field textarea {
+    width: 100%;
+    background: var(--bg-raised);
+    border: 1px solid var(--line);
+    border-radius: 10px;
+    padding: 14px 16px;
+    color: var(--ink);
+    font-family: var(--body);
+    font-size: 0.95rem;
+    transition: border-color 0.25s var(--ease);
+  }
+
+  .field input:focus,
+  .field select:focus,
+  .field textarea:focus { border-color: var(--cyan); }
+
+  .field textarea { resize: vertical; min-height: 120px; }
+
+  .submit-btn {
+    width: 100%;
+    justify-content: center;
+    font-size: 1rem;
+  }
+
+  .form-note {
+    margin-top: 14px;
+    font-size: 0.85rem;
+    color: var(--cyan);
+    opacity: 0;
+    transform: translateY(-6px);
+    transition: all 0.4s var(--ease);
+  }
+
+  .form-note.is-visible { opacity: 1; transform: translateY(0); }
+</style>
+</head>
+<body>
+
+<nav class="nav">
+  <a href="index.html" class="nav__mark"><img src="assets/img/logo-sg.png" alt="SG logo">Savan<span>G</span></a>
+  <button class="nav__toggle" aria-label="Toggle menu" aria-expanded="false">☰</button>
+  <ul class="nav__links">
+    <li><a href="index.html">Home</a></li>
+    <li><a href="portfolio.html">Portfolio</a></li>
+    <li><a href="who-i-am.html">Who I Am</a></li>
+    <li><a href="my-goal.html">My Goal</a></li>
+    <li><a href="skills.html">Skills</a></li>
+    <li><a href="socials.html">Socials</a></li>
+    <li><a href="contact.html">Contact</a></li>
+  </ul>
+</nav>
+
+<header class="wrap page-hero">
+  <p class="eyebrow">Let's work together</p>
+  <h1>Need a poster<br>or thumbnail made?</h1>
+</header>
+
+<section class="wrap">
+  <div class="contact-grid">
+    <div>
+      <p style="max-width:44ch; font-size:1.05rem;">Send over what you need — a video thumbnail, an event poster, cover art — and I'll get back to you.</p>
+      <ul class="info-list">
+        <li>
+          <span class="info-icon">✉️</span>
+          <div>
+            <div class="info-title">Email</div>
+            <div class="info-sub">ghadiyasavan63@gmail.com</div>
+          </div>
+        </li>
+        <li>
+          <span class="info-icon">📸</span>
+          <div>
+            <div class="info-title">Instagram DMs</div>
+            <div class="info-sub">@savanghadiyaofficial</div>
+          </div>
+        </li>
+      </ul>
+    </div>
+
+    <form id="contact-form" novalidate>
+      <div class="field">
+        <label for="name">Name</label>
+        <input type="text" id="name" name="name" required>
+      </div>
+      <div class="field">
+        <label for="email">Email</label>
+        <input type="email" id="email" name="email" required>
+      </div>
+      <div class="field">
+        <label for="type">What do you need?</label>
+        <select id="type" name="type">
+          <option>Thumbnail</option>
+          <option>Poster</option>
+          <option>Video Edit</option>
+          <option>Something else</option>
+        </select>
+      </div>
+      <div class="field">
+        <label for="message">Details</label>
+        <textarea id="message" name="message" required placeholder="Tell me about the project, deadline, and any references."></textarea>
+      </div>
+      <button type="submit" class="btn btn--solid submit-btn">Send message</button>
+      <p class="form-note" id="form-note">This is a demo form — connect it to Formspree or EmailJS to actually receive messages (see README).</p>
+    </form>
+  </div>
+</section>
+
+<footer class="site-footer">
+  <span>© 2026 Savan Ghadiya — Creative Video &amp; Photo Editor.</span>
+  <div class="footer__socials">
+    <a href="https://www.instagram.com/savanghadiyaofficial/" target="_blank" rel="noopener">Instagram</a>
+    <a href="contact.html">Contact</a>
+  </div>
+</footer>
+
+<script src="assets/nav.js"></script>
+<script>
+  document.getElementById('contact-form').addEventListener('submit', (e) => {
+    e.preventDefault();
+    document.getElementById('form-note').classList.add('is-visible');
+  });
+</script>
+</body>
+</html>
