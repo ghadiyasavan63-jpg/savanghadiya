@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Skills — Savan Ghadiya</title>
+<link rel="icon" href="assets/img/favicon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/style.css">
+<style>
+  .page-hero { padding: 160px 0 0; }
+  .page-hero h1 { font-size: clamp(2.6rem, 7vw, 4.6rem); }
+
+  .skills-layout {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 60px;
+    margin-top: 20px;
+  }
+
+  @media (max-width: 860px) {
+    .skills-layout { grid-template-columns: 1fr; }
+  }
+
+  .skill { margin-bottom: 24px; }
+
+  .skill__top {
+    display: flex;
+    justify-content: space-between;
+    font-size: 0.9rem;
+    margin-bottom: 8px;
+  }
+
+  .skill__bar {
+    height: 8px;
+    border-radius: 99px;
+    background: var(--bg-raised);
+    overflow: hidden;
+  }
+
+  .skill__fill {
+    height: 100%;
+    border-radius: 99px;
+    width: 0%;
+    transition: width 1.2s var(--ease);
+    background: linear-gradient(90deg, var(--magenta), var(--cyan));
+  }
+
+  .skill.in-view .skill__fill { width: var(--pct); }
+
+  .tools {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-top: 8px;
+  }
+
+  .tool-chip {
+    padding: 8px 16px;
+    border: 1px solid var(--line);
+    border-radius: 999px;
+    font-size: 0.85rem;
+    color: var(--ink-dim);
+  }
+
+  .side-title {
+    font-family: var(--display);
+    text-transform: uppercase;
+    font-size: 1.1rem;
+    margin-bottom: 24px;
+    color: var(--ink-dim);
+  }
+</style>
+</head>
+<body>
+
+<nav class="nav">
+  <a href="index.html" class="nav__mark"><img src="assets/img/logo-sg.png" alt="SG logo">Savan<span>G</span></a>
+  <button class="nav__toggle" aria-label="Toggle menu" aria-expanded="false">☰</button>
+  <ul class="nav__links">
+    <li><a href="index.html">Home</a></li>
+    <li><a href="portfolio.html">Portfolio</a></li>
+    <li><a href="who-i-am.html">Who I Am</a></li>
+    <li><a href="my-goal.html">My Goal</a></li>
+    <li><a href="skills.html">Skills</a></li>
+    <li><a href="socials.html">Socials</a></li>
+    <li><a href="contact.html">Contact</a></li>
+  </ul>
+</nav>
+
+<header class="wrap page-hero">
+  <p class="eyebrow">What I bring to a project</p>
+  <h1>Skills</h1>
+  <div class="subnav">
+    <a href="who-i-am.html">Who I Am</a>
+    <a href="my-goal.html">My Goal</a>
+    <a href="skills.html">Skills</a>
+  </div>
+</header>
+
+<section class="wrap">
+  <div class="skills-layout">
+    <div>
+      <div class="side-title">Craft</div>
+      <div class="skill" style="--pct:90%">
+        <div class="skill__top"><span>Photo Editing</span><span>90%</span></div>
+        <div class="skill__bar"><div class="skill__fill"></div></div>
+      </div>
+      <div class="skill" style="--pct:82%">
+        <div class="skill__top"><span>Poster &amp; Thumbnail Design</span><span>82%</span></div>
+        <div class="skill__bar"><div class="skill__fill"></div></div>
+      </div>
+      <div class="skill" style="--pct:75%">
+        <div class="skill__top"><span>Video Editing</span><span>75%</span></div>
+        <div class="skill__bar"><div class="skill__fill"></div></div>
+      </div>
+      <div class="skill" style="--pct:70%">
+        <div class="skill__top"><span>Color Grading</span><span>70%</span></div>
+        <div class="skill__bar"><div class="skill__fill"></div></div>
+      </div>
+    </div>
+
+    <div>
+      <div class="side-title">Tools I use</div>
+      <div class="tools">
+        <span class="tool-chip">Photoshop</span>
+        <span class="tool-chip">Premiere Pro</span>
+        <span class="tool-chip">CapCut</span>
+        <span class="tool-chip">Canva</span>
+        <span class="tool-chip">Lightroom</span>
+      </div>
+
+      <div class="side-title" style="margin-top:44px;">How I work</div>
+      <p>Creativity, consistency, and attention to detail — that's the approach behind every edit. I'd rather spend longer getting a detail right than ship something that just looks "fine."</p>
+    </div>
+  </div>
+</section>
+
+<footer class="site-footer">
+  <span>© 2026 Savan Ghadiya — Creative Video &amp; Photo Editor.</span>
+  <div class="footer__socials">
+    <a href="https://www.instagram.com/savanghadiyaofficial/" target="_blank" rel="noopener">Instagram</a>
+    <a href="contact.html">Contact</a>
+  </div>
+</footer>
+
+<script src="assets/nav.js"></script>
+<script>
+  const skills = document.querySelectorAll('.skill');
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) e.target.classList.add('in-view');
+    });
+  }, { threshold: 0.4 });
+  skills.forEach(s => io.observe(s));
+</script>
+</body>
+</html>
