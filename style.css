@@ -1,0 +1,415 @@
+/* ===========================================================
+   DESIGN TOKENS
+   Base: near-black poster background
+   Accents: magenta + cyan duotone grade, yellow reserved for one hero pop
+=========================================================== */
+:root {
+  --bg: #0a0a0f;
+  --bg-raised: #121218;
+  --ink: #f2f0f5;
+  --ink-dim: #9b98a8;
+  --magenta: #ff2e88;
+  --cyan: #00f0ff;
+  --yellow: #ffd23f;
+  --line: rgba(242, 240, 245, 0.1);
+
+  --display: "Anton", "Arial Narrow", sans-serif;
+  --body: "Inter", -apple-system, BlinkMacSystemFont, sans-serif;
+
+  --grid-max: 1200px;
+  --pad: clamp(20px, 5vw, 64px);
+
+  --ease: cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--ink);
+  font-family: var(--body);
+  font-size: 16px;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+}
+
+img { max-width: 100%; display: block; }
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+::selection {
+  background: var(--magenta);
+  color: var(--bg);
+}
+
+:focus-visible {
+  outline: 2px solid var(--cyan);
+  outline-offset: 3px;
+}
+
+/* ===========================================================
+   TYPOGRAPHY
+=========================================================== */
+h1, h2, h3, .display {
+  font-family: var(--display);
+  text-transform: uppercase;
+  font-weight: 400;
+  line-height: 0.92;
+  letter-spacing: 0.005em;
+  margin: 0;
+}
+
+p {
+  max-width: 62ch;
+  color: var(--ink-dim);
+}
+
+.eyebrow {
+  font-family: var(--body);
+  font-size: 0.8rem;
+  color: var(--ink-dim);
+  margin: 0 0 12px;
+}
+
+/* ===========================================================
+   LAYOUT SHELL
+=========================================================== */
+.wrap {
+  max-width: var(--grid-max);
+  margin: 0 auto;
+  padding: 0 var(--pad);
+}
+
+/* ===========================================================
+   NAV
+=========================================================== */
+.nav {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 100;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 22px var(--pad);
+  background: linear-gradient(to bottom, rgba(10,10,15,0.92), transparent);
+  backdrop-filter: blur(2px);
+}
+
+.nav__mark {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-family: var(--display);
+  font-size: 1.2rem;
+  text-transform: uppercase;
+  letter-spacing: 0.02em;
+}
+
+.nav__mark img {
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  border: 1px solid var(--line);
+}
+
+.nav__mark span { color: var(--magenta); }
+
+.nav__links {
+  display: flex;
+  gap: clamp(16px, 3vw, 36px);
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  font-size: 0.92rem;
+}
+
+.nav__links a {
+  position: relative;
+  padding: 4px 0;
+  color: var(--ink-dim);
+  transition: color 0.25s var(--ease);
+}
+
+.nav__links a::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -2px;
+  width: 0;
+  height: 2px;
+  background: var(--cyan);
+  transition: width 0.3s var(--ease);
+}
+
+.nav__links a:hover,
+.nav__links a.is-active {
+  color: var(--ink);
+}
+
+.nav__links a:hover::after,
+.nav__links a.is-active::after {
+  width: 100%;
+}
+
+.nav__toggle {
+  display: none;
+  background: none;
+  border: none;
+  color: var(--ink);
+  font-size: 1.6rem;
+  cursor: pointer;
+}
+
+@media (max-width: 760px) {
+  .nav__links {
+    position: fixed;
+    inset: 0 0 auto 0;
+    flex-direction: column;
+    background: var(--bg);
+    padding: 100px var(--pad) 40px;
+    gap: 22px;
+    font-size: 1.6rem;
+    transform: translateY(-100%);
+    transition: transform 0.4s var(--ease);
+    border-bottom: 1px solid var(--line);
+  }
+  .nav__links.is-open { transform: translateY(0); }
+  .nav__toggle { display: block; z-index: 101; }
+}
+
+/* ===========================================================
+   BUTTONS
+=========================================================== */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 14px 28px;
+  font-family: var(--body);
+  font-weight: 600;
+  font-size: 0.95rem;
+  border-radius: 999px;
+  border: 1px solid var(--line);
+  cursor: pointer;
+  transition: transform 0.3s var(--ease), border-color 0.3s var(--ease), background 0.3s var(--ease);
+}
+
+.btn--solid {
+  background: var(--ink);
+  color: var(--bg);
+  border-color: var(--ink);
+}
+
+.btn--solid:hover {
+  transform: translateY(-2px);
+  background: var(--magenta);
+  border-color: var(--magenta);
+  color: var(--ink);
+}
+
+.btn--ghost:hover {
+  border-color: var(--cyan);
+  color: var(--cyan);
+  transform: translateY(-2px);
+}
+
+/* ===========================================================
+   FOOTER
+=========================================================== */
+.site-footer {
+  border-top: 1px solid var(--line);
+  padding: 40px var(--pad) 32px;
+  margin-top: 120px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 0.85rem;
+  color: var(--ink-dim);
+}
+
+.site-footer a:hover { color: var(--ink); }
+
+.footer__socials {
+  display: flex;
+  gap: 20px;
+}
+
+/* ===========================================================
+   ABOUT CLUSTER SUBNAV
+   Shared pill-tab strip across Who I Am / My Goal / Skills
+=========================================================== */
+.subnav {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+  margin-top: 28px;
+}
+
+.subnav a {
+  padding: 9px 20px;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  font-size: 0.85rem;
+  color: var(--ink-dim);
+  transition: all 0.25s var(--ease);
+}
+
+.subnav a:hover { color: var(--ink); border-color: var(--ink-dim); }
+
+.subnav a.is-active {
+  background: var(--ink);
+  color: var(--bg);
+  border-color: var(--ink);
+}
+
+/* ===========================================================
+   LIGHTBOX (poster full view)
+=========================================================== */
+.lightbox {
+  position: fixed;
+  inset: 0;
+  z-index: 200;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  padding: 40px 20px;
+  background: rgba(6, 6, 9, 0.92);
+  backdrop-filter: blur(6px);
+}
+
+.lightbox.is-open { display: flex; }
+
+.lightbox__inner {
+  position: relative;
+  max-width: 640px;
+  width: 100%;
+  animation: pop-in 0.35s var(--ease);
+}
+
+@keyframes pop-in {
+  from { opacity: 0; transform: scale(0.94); }
+  to { opacity: 1; transform: scale(1); }
+}
+
+.lightbox__inner img {
+  width: 100%;
+  border-radius: 14px;
+  border: 1px solid var(--line);
+}
+
+.lightbox__close {
+  position: absolute;
+  top: -46px;
+  right: 0;
+  background: none;
+  border: 1px solid var(--line);
+  color: var(--ink);
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  cursor: pointer;
+  font-size: 1.1rem;
+}
+
+.lightbox__caption {
+  margin-top: 14px;
+  font-size: 0.9rem;
+  color: var(--ink-dim);
+}
+
+/* ===========================================================
+   COMING SOON TILE
+=========================================================== */
+.tile--soon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-style: dashed;
+  color: var(--ink-dim);
+  font-size: 0.9rem;
+  text-align: center;
+  padding: 20px;
+  cursor: default;
+}
+
+.tile--soon:hover .tile__face { transform: none; }
+
+/* ===========================================================
+   GOAL PAGE — milestone timeline
+=========================================================== */
+.timeline {
+  position: relative;
+  padding-left: 32px;
+  margin-top: 48px;
+}
+
+.timeline::before {
+  content: "";
+  position: absolute;
+  left: 6px;
+  top: 6px;
+  bottom: 6px;
+  width: 2px;
+  background: linear-gradient(var(--magenta), var(--cyan));
+}
+
+.milestone {
+  position: relative;
+  padding-bottom: 44px;
+}
+
+.milestone:last-child { padding-bottom: 0; }
+
+.milestone::before {
+  content: "";
+  position: absolute;
+  left: -32px;
+  top: 4px;
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  background: var(--bg);
+  border: 2px solid var(--cyan);
+}
+
+.milestone__label {
+  font-size: 0.8rem;
+  color: var(--cyan);
+  margin-bottom: 6px;
+}
+
+.milestone__title {
+  font-family: var(--display);
+  text-transform: uppercase;
+  font-size: 1.4rem;
+  margin-bottom: 8px;
+}
+
+/* ===========================================================
+   SECTION SPACING
+=========================================================== */
+section { padding: 120px 0; }
+section:first-of-type { padding-top: 0; }
+
+@media (max-width: 760px) {
+  section { padding: 80px 0; }
+}
