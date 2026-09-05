@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Savan Ghadiya — Creative Video & Photo Editor</title>
+<meta name="description" content="Portfolio of Savan Ghadiya, creative video and photo editor.">
+<link rel="icon" href="assets/img/favicon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/style.css">
+<style>
+  .hero {
+    min-height: 100svh;
+    display: flex;
+    align-items: center;
+    position: relative;
+    padding-top: 100px;
+    perspective: 1400px;
+  }
+
+  .hero__glow {
+    position: absolute;
+    inset: 0;
+    background:
+      radial-gradient(600px 400px at 15% 20%, rgba(255,46,136,0.18), transparent 60%),
+      radial-gradient(600px 500px at 85% 70%, rgba(0,240,255,0.14), transparent 60%);
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  .hero__grid {
+    position: relative;
+    z-index: 1;
+    width: 100%;
+    display: grid;
+    grid-template-columns: 1.1fr 0.9fr;
+    gap: 40px;
+    align-items: center;
+  }
+
+  .hero__title { font-size: clamp(3rem, 8vw, 6rem); }
+  .hero__title .accent { color: var(--magenta); }
+
+  .hero__sub {
+    margin-top: 24px;
+    font-size: 1.15rem;
+    max-width: 46ch;
+  }
+
+  .hero__cta {
+    margin-top: 36px;
+    display: flex;
+    gap: 16px;
+    flex-wrap: wrap;
+  }
+
+  .stack {
+    position: relative;
+    height: clamp(320px, 40vw, 460px);
+    transform-style: preserve-3d;
+    transition: transform 0.1s linear;
+  }
+
+  .stack__card {
+    position: absolute;
+    inset: 0;
+    border-radius: 18px;
+    border: 1px solid var(--line);
+    background: var(--bg-raised);
+    box-shadow: 0 30px 60px -20px rgba(0,0,0,0.6);
+    transform-style: preserve-3d;
+    will-change: transform;
+    overflow: hidden;
+  }
+
+  .stack__card img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .stack__card:nth-child(1) {
+    transform: translate3d(0, 0, 0) rotateZ(-3deg);
+    z-index: 3;
+  }
+  .stack__card:nth-child(2) {
+    transform: translate3d(26px, 26px, -60px) rotateZ(4deg);
+    z-index: 2;
+  }
+  .stack__card:nth-child(3) {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(160deg, rgba(255,210,63,0.28), #121218 60%);
+    transform: translate3d(52px, 52px, -120px) rotateZ(-7deg);
+    z-index: 1;
+    font-family: var(--display);
+    text-transform: uppercase;
+    font-size: 1.2rem;
+    text-align: center;
+    padding: 20px;
+  }
+
+  @media (max-width: 900px) {
+    .hero__grid { grid-template-columns: 1fr; }
+    .stack { margin-top: 20px; }
+  }
+
+  .marquee {
+    overflow: hidden;
+    border-top: 1px solid var(--line);
+    border-bottom: 1px solid var(--line);
+    padding: 18px 0;
+    background: var(--bg-raised);
+  }
+
+  .marquee__track {
+    display: flex;
+    width: max-content;
+    gap: 40px;
+    animation: scroll 22s linear infinite;
+    font-family: var(--display);
+    text-transform: uppercase;
+    font-size: 1.2rem;
+    color: var(--ink-dim);
+  }
+
+  .marquee__track span:nth-child(4n) { color: var(--magenta); }
+  .marquee__track span:nth-child(4n+2) { color: var(--cyan); }
+
+  @keyframes scroll {
+    from { transform: translateX(0); }
+    to { transform: translateX(-50%); }
+  }
+
+  .preview {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+  }
+
+  .preview__item {
+    aspect-ratio: 4/5;
+    border-radius: 14px;
+    border: 1px solid var(--line);
+    position: relative;
+    overflow: hidden;
+    cursor: pointer;
+    transition: transform 0.4s var(--ease);
+  }
+
+  .preview__item:hover { transform: translateY(-8px); }
+
+  .preview__item img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .preview__tag {
+    position: absolute;
+    bottom: 16px;
+    left: 16px;
+    font-size: 0.85rem;
+    font-weight: 600;
+    background: rgba(10,10,15,0.7);
+    padding: 6px 14px;
+    border-radius: 999px;
+    backdrop-filter: blur(4px);
+  }
+
+  @media (max-width: 560px) {
+    .preview { grid-template-columns: 1fr; }
+  }
+
+  .section-head {
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    gap: 24px;
+    margin-bottom: 44px;
+    flex-wrap: wrap;
+  }
+</style>
+</head>
+<body>
+
+<nav class="nav">
+  <a href="index.html" class="nav__mark"><img src="assets/img/logo-sg.png" alt="SG logo">Savan<span>G</span></a>
+  <button class="nav__toggle" aria-label="Toggle menu" aria-expanded="false">☰</button>
+  <ul class="nav__links">
+    <li><a href="index.html">Home</a></li>
+    <li><a href="portfolio.html">Portfolio</a></li>
+    <li><a href="who-i-am.html">Who I Am</a></li>
+    <li><a href="my-goal.html">My Goal</a></li>
+    <li><a href="skills.html">Skills</a></li>
+    <li><a href="socials.html">Socials</a></li>
+    <li><a href="contact.html">Contact</a></li>
+  </ul>
+</nav>
+
+<header class="hero">
+  <div class="hero__glow"></div>
+  <div class="wrap hero__grid">
+    <div>
+      <p class="eyebrow">Creative Video &amp; Photo Editor</p>
+      <h1 class="hero__title">Turning ideas<br>into <span class="accent">visuals</span> that stand out.</h1>
+      <p class="hero__sub">I'm Savan Ghadiya — I edit thumbnails, posters, and visuals that grab attention, and I'm always experimenting with new styles and techniques.</p>
+      <div class="hero__cta">
+        <a href="portfolio.html" class="btn btn--solid">See the work</a>
+        <a href="contact.html" class="btn btn--ghost">Work with me</a>
+      </div>
+    </div>
+
+    <div class="stack" id="stack">
+      <div class="stack__card"><img src="assets/img/poster-silage-thumb.jpg" alt="Vidhi Makai Silage poster"></div>
+      <div class="stack__card"><img src="assets/img/poster-rakshabandhan-thumb.jpg" alt="Raksha Bandhan 2026 poster"></div>
+      <div class="stack__card">More<br>coming<br>soon</div>
+    </div>
+  </div>
+</header>
+
+<div class="marquee">
+  <div class="marquee__track">
+    <span>Thumbnails</span><span>Posters</span><span>Photo Editing</span><span>Video Editing</span>
+    <span>Thumbnails</span><span>Posters</span><span>Photo Editing</span><span>Video Editing</span>
+  </div>
+</div>
+
+<section class="wrap">
+  <div class="section-head">
+    <h2 style="font-size:clamp(1.8rem,4vw,2.8rem);">Recent<br>work</h2>
+    <a href="portfolio.html" class="btn btn--ghost">Full portfolio →</a>
+  </div>
+  <div class="preview">
+    <div class="preview__item" data-lightbox data-src="assets/img/poster-silage-full.jpg" data-caption="Vidhi Makai Silage — Poster Design">
+      <img src="assets/img/poster-silage-thumb.jpg" alt="Vidhi Makai Silage poster">
+      <span class="preview__tag">Poster Design</span>
+    </div>
+    <div class="preview__item" data-lightbox data-src="assets/img/poster-rakshabandhan-full.jpg" data-caption="Raksha Bandhan 2026 — Ascent School Poster">
+      <img src="assets/img/poster-rakshabandhan-thumb.jpg" alt="Raksha Bandhan 2026 poster">
+      <span class="preview__tag">Event Poster</span>
+    </div>
+  </div>
+</section>
+
+<footer class="site-footer">
+  <span>© 2026 Savan Ghadiya — Creative Video &amp; Photo Editor.</span>
+  <div class="footer__socials">
+    <a href="https://www.instagram.com/savanghadiyaofficial/" target="_blank" rel="noopener">Instagram</a>
+    <a href="contact.html">Contact</a>
+  </div>
+</footer>
+
+<div class="lightbox" id="lightbox">
+  <div class="lightbox__inner">
+    <button class="lightbox__close" aria-label="Close">✕</button>
+    <img src="" alt="">
+    <p class="lightbox__caption"></p>
+  </div>
+</div>
+
+<script src="assets/nav.js"></script>
+<script>
+  const stack = document.getElementById('stack');
+  if (window.matchMedia('(pointer: fine)').matches && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+    document.querySelector('.hero').addEventListener('mousemove', (e) => {
+      const rect = stack.getBoundingClientRect();
+      const cx = rect.left + rect.width / 2;
+      const cy = rect.top + rect.height / 2;
+      const dx = (e.clientX - cx) / rect.width;
+      const dy = (e.clientY - cy) / rect.height;
+      stack.style.transform = `rotateX(${dy * -14}deg) rotateY(${dx * 18}deg)`;
+    });
+    document.querySelector('.hero').addEventListener('mouseleave', () => {
+      stack.style.transform = 'rotateX(0) rotateY(0)';
+    });
+  }
+</script>
+</body>
+</html>
