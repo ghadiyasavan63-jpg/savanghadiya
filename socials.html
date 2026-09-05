@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Socials — Savan Ghadiya</title>
+<link rel="icon" href="assets/img/favicon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/style.css">
+<style>
+  .page-hero { padding: 160px 0 20px; text-align: center; }
+  .page-hero h1 { font-size: clamp(2.8rem, 9vw, 5.6rem); }
+  .page-hero p { margin: 20px auto 0; text-align: center; }
+
+  .ig-card {
+    max-width: 620px;
+    margin: 60px auto 0;
+    border-radius: 24px;
+    border: 1px solid var(--line);
+    padding: 48px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+    background: var(--bg-raised);
+  }
+
+  .ig-card::before {
+    content: "";
+    position: absolute;
+    inset: -2px;
+    background: conic-gradient(from var(--angle, 0deg), var(--magenta), var(--yellow), var(--cyan), var(--magenta));
+    z-index: -1;
+    animation: spin 6s linear infinite;
+    filter: blur(30px);
+    opacity: 0.55;
+  }
+
+  @keyframes spin { to { --angle: 360deg; } }
+
+  @property --angle {
+    syntax: '<angle>';
+    initial-value: 0deg;
+    inherits: false;
+  }
+
+  .ig-avatar {
+    width: 84px;
+    height: 84px;
+    border-radius: 50%;
+    margin: 0 auto 20px;
+    border: 2px solid var(--line);
+    overflow: hidden;
+    background: var(--bg);
+  }
+
+  .ig-avatar img { width: 100%; height: 100%; object-fit: cover; padding: 14px; }
+
+  .ig-handle {
+    font-family: var(--display);
+    font-size: clamp(1.6rem, 5vw, 2.2rem);
+    text-transform: none;
+  }
+
+  .ig-sub { margin: 12px auto 28px; }
+
+  .socials-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+    max-width: 620px;
+    margin: 60px auto 0;
+  }
+
+  @media (max-width: 700px) {
+    .socials-grid { grid-template-columns: 1fr; }
+    .ig-card { padding: 32px 24px; }
+  }
+
+  .social-tile {
+    border: 1px solid var(--line);
+    border-radius: 16px;
+    padding: 28px 20px;
+    text-align: center;
+    transition: transform 0.35s var(--ease), border-color 0.35s var(--ease);
+    text-decoration: none;
+  }
+
+  .social-tile:hover {
+    transform: translateY(-6px);
+    border-color: var(--cyan);
+  }
+
+  .social-tile__icon { font-size: 1.8rem; margin-bottom: 12px; }
+
+  .social-tile__name {
+    font-family: var(--display);
+    text-transform: uppercase;
+    font-size: 1.1rem;
+  }
+
+  .social-tile__handle {
+    font-size: 0.85rem;
+    color: var(--ink-dim);
+    margin-top: 4px;
+  }
+</style>
+</head>
+<body>
+
+<nav class="nav">
+  <a href="index.html" class="nav__mark"><img src="assets/img/logo-sg.png" alt="SG logo">Savan<span>G</span></a>
+  <button class="nav__toggle" aria-label="Toggle menu" aria-expanded="false">☰</button>
+  <ul class="nav__links">
+    <li><a href="index.html">Home</a></li>
+    <li><a href="portfolio.html">Portfolio</a></li>
+    <li><a href="who-i-am.html">Who I Am</a></li>
+    <li><a href="my-goal.html">My Goal</a></li>
+    <li><a href="skills.html">Skills</a></li>
+    <li><a href="socials.html">Socials</a></li>
+    <li><a href="contact.html">Contact</a></li>
+  </ul>
+</nav>
+
+<header class="wrap page-hero">
+  <p class="eyebrow">Come find me</p>
+  <h1>Follow the<br>work live.</h1>
+  <p style="max-width: 50ch;">New edits and drops go up on Instagram first — before they ever land here.</p>
+</header>
+
+<div class="wrap">
+  <div class="ig-card">
+    <div class="ig-avatar"><img src="assets/img/logo-sg.png" alt="Savan Ghadiya logo"></div>
+    <div class="ig-handle">@savanghadiyaofficial</div>
+    <p class="ig-sub">Thumbnails, posters, and edit breakdowns.</p>
+    <a href="https://www.instagram.com/savanghadiyaofficial/" target="_blank" rel="noopener" class="btn btn--solid">Follow on Instagram</a>
+  </div>
+
+  <div class="socials-grid">
+    <a href="mailto:ghadiyasavan63@gmail.com" class="social-tile">
+      <div class="social-tile__icon">✉️</div>
+      <div class="social-tile__name">Email</div>
+      <div class="social-tile__handle">ghadiyasavan63@gmail.com</div>
+    </a>
+    <a href="contact.html" class="social-tile">
+      <div class="social-tile__icon">💬</div>
+      <div class="social-tile__name">Contact</div>
+      <div class="social-tile__handle">Send a project brief</div>
+    </a>
+  </div>
+</div>
+
+<footer class="site-footer">
+  <span>© 2026 Savan Ghadiya — Creative Video &amp; Photo Editor.</span>
+  <div class="footer__socials">
+    <a href="https://www.instagram.com/savanghadiyaofficial/" target="_blank" rel="noopener">Instagram</a>
+    <a href="contact.html">Contact</a>
+  </div>
+</footer>
+
+<script src="assets/nav.js"></script>
+</body>
+</html>
