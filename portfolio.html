@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Portfolio — Savan Ghadiya</title>
+<link rel="icon" href="assets/img/favicon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/style.css">
+<style>
+  .page-hero { padding: 160px 0 60px; }
+  .page-hero h1 { font-size: clamp(2.6rem, 7vw, 4.6rem); }
+
+  .filters {
+    display: flex;
+    gap: 12px;
+    flex-wrap: wrap;
+    margin-top: 32px;
+  }
+
+  .filter {
+    padding: 8px 18px;
+    border: 1px solid var(--line);
+    border-radius: 999px;
+    font-size: 0.85rem;
+    cursor: pointer;
+    background: none;
+    color: var(--ink-dim);
+    transition: all 0.25s var(--ease);
+  }
+
+  .filter:hover { color: var(--ink); border-color: var(--ink-dim); }
+
+  .filter.is-active {
+    background: var(--ink);
+    color: var(--bg);
+    border-color: var(--ink);
+  }
+
+  .gallery {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 22px;
+  }
+
+  @media (max-width: 900px) {
+    .gallery { grid-template-columns: 1fr 1fr; }
+  }
+  @media (max-width: 560px) {
+    .gallery { grid-template-columns: 1fr; }
+  }
+
+  .tile {
+    position: relative;
+    aspect-ratio: 3/4;
+    border-radius: 16px;
+    overflow: hidden;
+    border: 1px solid var(--line);
+    cursor: pointer;
+  }
+
+  .tile img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.5s var(--ease);
+  }
+
+  .tile:hover img { transform: scale(1.08); }
+
+  .tile__overlay {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    padding: 20px;
+    background: linear-gradient(to top, rgba(10,10,15,0.85) 10%, transparent 55%);
+  }
+
+  .tile__tag {
+    font-size: 0.75rem;
+    color: var(--cyan);
+    margin-bottom: 6px;
+  }
+
+  .tile__name {
+    font-family: var(--display);
+    text-transform: uppercase;
+    font-size: 1.15rem;
+    line-height: 1.15;
+  }
+
+  .tile--soon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-style: dashed;
+    color: var(--ink-dim);
+    font-size: 0.9rem;
+    text-align: center;
+    padding: 20px;
+    cursor: default;
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .tile--soon .soon-icon { font-size: 1.6rem; opacity: 0.6; }
+</style>
+</head>
+<body>
+
+<nav class="nav">
+  <a href="index.html" class="nav__mark"><img src="assets/img/logo-sg.png" alt="SG logo">Savan<span>G</span></a>
+  <button class="nav__toggle" aria-label="Toggle menu" aria-expanded="false">☰</button>
+  <ul class="nav__links">
+    <li><a href="index.html">Home</a></li>
+    <li><a href="portfolio.html">Portfolio</a></li>
+    <li><a href="who-i-am.html">Who I Am</a></li>
+    <li><a href="my-goal.html">My Goal</a></li>
+    <li><a href="skills.html">Skills</a></li>
+    <li><a href="socials.html">Socials</a></li>
+    <li><a href="contact.html">Contact</a></li>
+  </ul>
+</nav>
+
+<header class="wrap page-hero">
+  <p class="eyebrow">Selected work</p>
+  <h1>Everything<br>I've dropped.</h1>
+  <div class="filters" id="filters">
+    <button class="filter is-active" data-filter="all">All</button>
+    <button class="filter" data-filter="poster">Posters</button>
+    <button class="filter" data-filter="soon">Coming Soon</button>
+  </div>
+</header>
+
+<section class="wrap">
+  <div class="gallery" id="gallery">
+    <div class="tile" data-cat="poster" data-lightbox data-src="assets/img/poster-silage-full.jpg" data-caption="Vidhi Makai Silage — Poster Design">
+      <img src="assets/img/poster-silage-thumb.jpg" alt="Vidhi Makai Silage poster">
+      <div class="tile__overlay">
+        <span class="tile__tag">Poster Design</span>
+        <span class="tile__name">Vidhi Makai Silage</span>
+      </div>
+    </div>
+
+    <div class="tile" data-cat="poster" data-lightbox data-src="assets/img/poster-rakshabandhan-full.jpg" data-caption="Raksha Bandhan 2026 — Ascent School Poster">
+      <img src="assets/img/poster-rakshabandhan-thumb.jpg" alt="Raksha Bandhan 2026 poster">
+      <div class="tile__overlay">
+        <span class="tile__tag">Event Poster</span>
+        <span class="tile__name">Raksha Bandhan 2026</span>
+      </div>
+    </div>
+
+    <div class="tile tile--soon" data-cat="soon">
+      <span class="soon-icon">＋</span>
+      <span>New work<br>coming soon</span>
+    </div>
+    <div class="tile tile--soon" data-cat="soon">
+      <span class="soon-icon">＋</span>
+      <span>New work<br>coming soon</span>
+    </div>
+    <div class="tile tile--soon" data-cat="soon">
+      <span class="soon-icon">＋</span>
+      <span>New work<br>coming soon</span>
+    </div>
+  </div>
+</section>
+
+<footer class="site-footer">
+  <span>© 2026 Savan Ghadiya — Creative Video &amp; Photo Editor.</span>
+  <div class="footer__socials">
+    <a href="https://www.instagram.com/savanghadiyaofficial/" target="_blank" rel="noopener">Instagram</a>
+    <a href="contact.html">Contact</a>
+  </div>
+</footer>
+
+<div class="lightbox" id="lightbox">
+  <div class="lightbox__inner">
+    <button class="lightbox__close" aria-label="Close">✕</button>
+    <img src="" alt="">
+    <p class="lightbox__caption"></p>
+  </div>
+</div>
+
+<script src="assets/nav.js"></script>
+<script>
+  const filters = document.querySelectorAll('.filter');
+  const tiles = document.querySelectorAll('.tile');
+  filters.forEach(btn => {
+    btn.addEventListener('click', () => {
+      filters.forEach(b => b.classList.remove('is-active'));
+      btn.classList.add('is-active');
+      const f = btn.dataset.filter;
+      tiles.forEach(t => {
+        t.style.display = (f === 'all' || t.dataset.cat === f) ? '' : 'none';
+      });
+    });
+  });
+</script>
+</body>
+</html>
